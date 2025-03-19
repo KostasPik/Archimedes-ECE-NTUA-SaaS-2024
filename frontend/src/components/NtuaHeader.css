@@ -1,0 +1,62 @@
+.ntua-header {
+    width: 100%;
+    padding-inline:5rem;
+    padding-top: 2rem;
+    display: flex;
+    align-items:center;
+}
+.ntua-logo-header {
+    width: 100%;
+    display: flex;
+    align-items:center;
+}
+.ntua-logo {
+    max-width: 140px !important;
+    float: left;
+    vertical-align: middle;
+}
+.ntua-title {
+    padding-left: 5px;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: auto 0;
+    float: left;
+    text-transform: uppercase;
+}
+.ntuafix-header {
+    font-size: clamp(2rem, 1.5vw, 4rem);
+    font-weight: 900;
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+    padding:0.5rem;
+    background-color: var(--primary);
+    color: #fff;
+}
+.evreka-top {
+    position: relative;
+}
+.evreka-top::before {
+    content: "EUREKA!";
+    color: var(--secondary);
+    position: absolute;
+    top:-5px;
+    right: -10px;
+    font-size:10px;    
+}
+.title-bg {
+    background-color: var(--primary);
+    padding: 0.01rem 0.2rem;
+    color: #fff;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 450px) {
+    .ntua-title {
+        display: none;
+    }
+    .ntua-logo {
+        width: 100%;
+        float:none;
+        margin: 0 auto;
+    }
+}

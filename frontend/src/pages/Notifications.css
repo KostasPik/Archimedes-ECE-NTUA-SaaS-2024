@@ -1,0 +1,39 @@
+.notifications-container {
+    padding: 20px; 
+    border-radius: 8px; 
+    background-color: #f0f8ff; 
+    max-width: 600px; 
+    margin: auto; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+h1 {
+    margin-bottom: 20px; 
+}
+
+.notifications-list {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+.notification-item {
+    padding: 10px; 
+    border-radius: 4px; 
+    margin-bottom: 10px; 
+    color: #003366; 
+}
+
+/* Alternating background colors for notifications */
+.notification-item:nth-child(odd) {
+    background-color: #ADD8E6; 
+}
+
+.notification-item:nth-child(even) {
+    background-color:  #87CEEB;
+}
+
+button {
+    border-radius: 4px; 
+    padding: 10px 20px; 
+}

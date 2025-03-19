@@ -1,0 +1,9 @@
+.locations-link {
+    color: var(--primary);
+    text-decoration: none;
+}
+.locations-link:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+    transition: all 150ms ease-in;
+}

@@ -1,0 +1,29 @@
+.my-submissions-wrapper {
+    width: 70%;
+    padding: 1rem;
+    margin: 4rem auto 0 auto;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+}
+.table-wrapper {
+    margin-top:2rem;
+}
+.my-submissions-wrapper .title-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pagination-wrapper {
+    width: 100%;
+    display: flex;
+    margin-block: 20px;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width:720px) {
+    .my-submissions-wrapper .title-wrapper {
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+}

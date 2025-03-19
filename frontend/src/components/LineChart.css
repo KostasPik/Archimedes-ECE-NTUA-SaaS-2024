@@ -1,0 +1,22 @@
+.line-wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 956px) {
+    .line-wrapper {
+        width: 70%;
+    }   
+}
+
+@media screen and (max-width: 550px) {
+    .line-wrapper {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .line-wrapper {
+        width: 97%;
+    }
+}

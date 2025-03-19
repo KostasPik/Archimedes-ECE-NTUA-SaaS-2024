@@ -1,0 +1,62 @@
+.hero {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.archimedes-logo {
+    width: 30%;
+}
+.hero-text {
+    padding-inline: 2rem;
+    position: relative;
+}
+.hero-title::before {
+    content: "EUREKA!";
+    color: var(--secondary);
+    top: -7px;
+    right: 0;
+    font-size: clamp(1rem, 1vw, 2rem);
+    position: absolute;   
+}
+.hero-title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 3.5vw, 7rem);
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .archimedes-logo {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .hero {
+        flex-direction: column;
+    }
+    .archimedes-logo {
+        width: 40%;
+    }
+    .hero-text {
+        margin: 2rem auto 0 auto;
+        padding-inline: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+    .hero-title::before {
+        top: -10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .archimedes-logo {
+        width: 70%;
+    }
+}

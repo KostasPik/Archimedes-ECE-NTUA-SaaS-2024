@@ -1,0 +1,21 @@
+.pie-wrapper {
+    width: 35%;
+    margin: 0 auto;
+}
+@media screen and (max-width: 956px) {
+    .pie-wrapper {
+        width: 70%;
+    }   
+}
+
+@media screen and (max-width: 550px) {
+    .pie-wrapper {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .pie-wrapper {
+        width: 97%;
+    }
+}

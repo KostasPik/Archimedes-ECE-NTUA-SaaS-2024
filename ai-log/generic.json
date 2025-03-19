@@ -1,0 +1,23 @@
+{
+    "answers": {
+        "phase": ["architecture", "design", "coding", "deployment"],
+        "action": ["microservices definition", "api design", "orchestration design", "choreography design", "data design", "container structuring", "source code authoring", "network operations", "code management"],
+        "scope": ["uml sequence", "uml component", "uml deployment", "uml other", "data management", "frontend", "backend", "api", "messaging design", "messaging deployment", "container configuration", "deployment scripts", "github operations"],
+        "action experience": [0, 1, 2, 3, 4, 5],
+        "prog lang": ["n/a", "js", "js-node", "python", "sql", "nosql", "java", "yaml/json", "other"],
+        "other prog lang": "<fill in>",
+        "aimodel": ["chatgpt", "gemini", "copilot", "lmstudio-hosted" ],
+        "aimodel version": "<fill in>",
+        "lmstudio-hosted aimodel": "<fill-in>",
+        "tool option": ["online free", "online full", "locally-run"],
+        "experience with tool": [0, 1, 2, 3, 4, 5],
+        "time allocated (h)": "<fill in>",
+        "time saved estimate (h)": "<fill in>", 
+        "quality of ai help": [0, 1, 2, 3, 4, 5],
+        "knowledge acquired": [0, 1, 2, 3, 4, 5],
+        "generic feeling - now": [0, 1, 2, 3, 4, 5],
+        "generic feeling - future": [0, 1, 2, 3, 4, 5],
+        "threat level": [0, 1, 2, 3, 4, 5],
+        "notes": "<fill in>"
+    }
+}

@@ -1,0 +1,11 @@
+.account-credits-container {
+    padding: 1rem;
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    width: fit-content;
+    text-align: center;
+}
+.credits-num {
+    margin-top:10px;
+    font-weight: 900;
+}

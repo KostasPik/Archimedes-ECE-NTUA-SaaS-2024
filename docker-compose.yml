@@ -1,0 +1,159 @@
+version: '3.9'
+
+services:
+  orchestrator:
+    build:
+      context: ./orchestrator
+    command: gunicorn --bind 0.0.0.0:8000 --workers=3 wsgi:app
+    container_name: orchestrator
+    hostname: orchestrator
+    env_file:
+      - ./orchestrator/orchestrator/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - frontend
+      - authorization
+      - authorizationDB
+      - credits
+      - creditsDB
+      - rabbitmq
+      - problem
+      - problemDB
+      - solver
+      - problem_rp
+      # - notifications
+    restart: always
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    hostname: frontend
+    ports:
+      - "80:80"
+    restart: always
+  authorization:
+    build: 
+      context: ./authorization-service
+    command: gunicorn --bind 0.0.0.0:5000 --workers=3 manage:app
+    ports:
+      - "5001:5000"
+    env_file:
+      - ./authorization-service/auth/.env
+    depends_on:
+      - authorizationDB
+    restart: always
+  authorizationDB:
+    image: postgres:16-alpine3.19
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=users
+    restart: always
+  credits:
+    build:
+      context: ./credits-service
+    command: gunicorn --bind 0.0.0.0:7007 --workers=3 manage:app
+    container_name: credits
+    hostname: credits
+    env_file:
+      - ./credits-service/credits/.env
+    ports:
+    - "7007:7007"
+    depends_on:
+      - creditsDB
+    restart: always
+  creditsDB:
+    image: postgres:16-alpine3.19
+    expose:
+        - "5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=credits
+    restart: always
+  problem:
+    build:
+      context: ./submissions-service
+    command: gunicorn --bind 0.0.0.0:6002 --workers=3 manage:app
+    container_name: problem
+    hostname: problem
+    env_file:
+      - ./submissions-service/problem/.env
+    ports:
+      - "6002:6002" # this is used for accessing of orchestrator
+    depends_on:
+      - problemDB
+      - rabbitmq
+    volumes:
+      - shared-data:/usr/src/app/uploads
+    restart: always
+  problemDB:
+    image: postgres:16-alpine3.19
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=problem
+    restart: always
+  rabbitmq:
+    # image: rabbitmq:3-management
+    image: rabbitmq:3.13.6-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "5677:5677"
+    environment:
+      - RABBITMQ_DEFAULT_USER=root
+      - RABBITMQ_DEFAULT_PASS=root
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: always
+  solver:
+    build:
+      context: ./solver-service
+    container_name: solver
+    hostname: solver
+    env_file:
+      - ./solver-service/.env
+    depends_on:
+      - rabbitmq
+    restart: always
+  problem_rp: # problem reverse proxy
+    build:
+      context: ./submissions-service/nginx
+    container_name: problem_rp
+    hostname: problem_rp
+    depends_on:
+      - problem
+    ports:
+      - "6001:6001"
+    volumes:
+      - shared-data:/app/uploads
+    restart: always
+
+  notifier:
+    build:
+      context: ./notifier
+    command: gunicorn -k gevent -w 1 --worker-class geventwebsocket.gunicorn.workers.GeventWebSocketWorker manage:app --bind 0.0.0.0:9000
+
+    container_name: notifier 
+    hostname: notifier
+    env_file:
+      - ./notifier/.env
+    ports:
+      - "9000:9000"
+    depends_on:
+      - rabbitmq
+    restart: always
+
+volumes:
+  shared-data:
